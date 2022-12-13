@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "speakup-d5027": {
+      "hosting": {
+        "SocialNetworkWall": [
+          "speakup-d5027"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "speakup-d5027"
+  }
+}

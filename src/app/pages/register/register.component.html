@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="form-container d-flex justify-content-center align-items-center flex-column mt-4 ">
+    <form [formGroup]="registerForm" class="d-flex flex-column shadow-lg justify-content-center align-items-center py-3 rounded-3">
+        <h2 >Create Account</h2>
+        <mat-form-field appearance="outline" class="mx-5 mb-2">
+            <mat-label>
+                Username
+            </mat-label>
+            <input formControlName="username" placeholder="enter username"  matInput type="text">
+            <mat-error *ngIf="registerForm.controls.username.invalid">
+                {{registerForm.controls.username.hasError('required')?'Username is required':'Username should be less than 15 characters'}}
+
+            </mat-error>
+        
+        </mat-form-field>
+<mat-form-field appearance="outline" class="mx-5">
+    <mat-label>
+        Email
+    </mat-label>
+    <input formControlName="email" placeholder="enter your email"  matInput type="email">
+    <mat-error *ngIf="registerForm.controls.email.invalid"> 
+        {{registerForm.controls.email.hasError('required')?'Email is required':'Please enter a valid email'}}
+    </mat-error>
+
+</mat-form-field>
+<mat-form-field appearance="outline" class="mx-5 mb-2">
+    <mat-label>
+Password    </mat-label>
+    <input  formControlName="password" placeholder="enter your password"  matInput type="password">
+    <mat-error *ngIf="registerForm.controls.password.invalid" > 
+        {{registerForm.controls.password.hasError('required')?'Password is required':'Password should be at least 6 characters'}}
+
+    </mat-error>
+
+</mat-form-field>
+<button mat-flat-button class="btn btn-primary mt-1" [disabled]="registerForm.invalid" (click)="create()" > Create Account </button>
+<p class="text-center mt-3"> OR </p>
+<button mat-stroked-button class="btn btn-outline-primary" routerLink="/login" >Login</button>
+    </form> 
+    </div>
+
+</div> 

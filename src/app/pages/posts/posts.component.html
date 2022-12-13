@@ -1,0 +1,57 @@
+<section>
+  <div class="container w-100">
+    <div class="row justify-content-center align-content-center align-items-center">
+  <div class="content-wrapper col-md-6 d-flex flex-column">
+      <mat-form-field appearance="fill">
+        <textarea [(ngModel)]="text"  matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Say something..."></textarea>
+      </mat-form-field>
+      <mat-form-field class="image-button mt-3 ms-0 w-25">
+        <ngx-mat-file-input class="image-input" #removableInput placeholder="Upload image" (change)="onFileSelected($event)"></ngx-mat-file-input>
+        <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+      <div class="new-post-actions-container">
+        <button (click)="post()"  mat-raised-button class="post-button">Post</button>
+      </div>
+  
+      <mat-card class="post-card" *ngFor="let post of posts.reverse(); let i=index">
+        <mat-card-header>
+          <mat-card-title>
+            {{post.username | titlecase}}
+          </mat-card-title>
+        </mat-card-header>
+        <img *ngIf="post.imageURL" [src]="post.imageURL" alt="image" mat-card-image>
+        <mat-card-content>
+          <p>
+            {{post.text}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="like(post.id,i)"  class="like-button" mat-icon-button disableRipple="true">
+            <mat-icon> {{post.likes.indexOf(userService.user.username)?'favorite_border':'favorite'}} </mat-icon>
+          </button> <span> {{post.likes.length}} liked it</span>
+        </mat-card-actions>
+        <div class="comments-container">
+          <div class="comments">
+            <div class="title">
+              Comments
+            </div>
+            <p *ngFor="let comment of post.comments"> <b> {{comment.username}} : </b> {{comment.comment}} </p>
+          </div>
+          <div class="comment-input">
+            <mat-form-field class="comment-form-field" >
+              <input [(ngModel)]="commentText[i]" matInput type="text" placeholder="Add a comment">
+            </mat-form-field>
+            <button (click)="comment(post.id,i)" class="comment-button" mat-button>Comment</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    </div>
+  
+  </div>
+    
+</section>
+
+  

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="form-container d-flex justify-content-center align-items-center flex-column mt-5 ">
+    <form [formGroup]="loginForm" class="d-flex flex-column shadow-lg justify-content-center align-items-center py-3 rounded-3">
+        <h2 >Login </h2>
+
+<mat-form-field appearance="outline" class="mx-5">
+    <mat-label>
+        Email
+    </mat-label>
+    <input placeholder="enter your email" formControlName="email" matInput type="email">
+
+    <mat-error *ngIf="loginForm.controls.email.invalid">       
+        
+        {{loginForm.controls.email.hasError('required')?'Email is required':'Please enter valid email'}}
+
+</mat-error>
+
+</mat-form-field>
+<mat-form-field appearance="outline" class="mx-5">
+    <mat-label>
+Password    </mat-label>
+    <input formControlName="password" placeholder="enter your password"  matInput type="password">
+    <mat-error *ngIf="loginForm.controls.password.invalid">        {{loginForm.controls.password.hasError('required')?'Password is required':'Please enter correct Password'}}
+    </mat-error>
+
+</mat-form-field>
+<button mat-flat-button class="btn btn-primary" [disabled]="loginForm.invalid" (click)="login()"> Login </button>
+<p class="text-center mt-3"> OR </p>
+<button mat-stroked-button class="btn btn-outline-primary" routerLink="/register"> Create Account </button>
+    </form> 
+    </div>
+
+</div> 
